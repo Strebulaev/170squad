@@ -1,0 +1,6 @@
+<div id="loginPopup" *ngIf="isPopupVisible" class="popup">
+  <form (ngSubmit)="onSubmit()">
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+    <input type="submit" value="Log In">
+  </form>
+</div>

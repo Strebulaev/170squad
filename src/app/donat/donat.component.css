@@ -1,0 +1,203 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.toggle-comments {
+  display: inline-block;
+  font-size: 24px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.comments {
+  display: block; /* Скрываем комментарии по умолчанию */
+  color: black;
+}
+
+
+  .comments.show {
+    display: none; /* Показываем комментарии при активации */
+  }
+
+.delete-comment-btn {
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #ff0066;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+body {
+  background-color: #1e1e1e;
+}
+
+div {
+  color: #ffffff;
+  background-color: #222;
+  margin-bottom: 40px;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 0, 102, 0.3);
+}
+
+h3 {
+  font-size: 24px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+  li strong {
+    color: #ff0066;
+  }
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #ff0066;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+  button:hover {
+    background-color: #cc0052;
+  }
+@media (max-width: 480px) {
+  h1 {
+    font-size: 36px; /* Уменьшаем размер шрифта */
+    margin-bottom: 10px; /* Уменьшаем отступ */
+  }
+
+  h2 {
+    font-size: 24px; /* Уменьшаем размер шрифта */
+    margin-bottom: 10px; /* Уменьшаем отступ */
+  }
+
+  h4 {
+    font-size: 16px; /* Уменьшаем размер шрифта */
+    margin-bottom: 10px; /* Уменьшаем отступ */
+  }
+
+  div {
+    margin-bottom: 10px; /* Уменьшаем отступ */
+    padding: 5px; /* Уменьшаем отступ */
+    box-shadow: 0 0 3px rgba(255, 0, 102, 0.3); /* Уменьшаем тень */
+  }
+
+  h3 {
+    font-size: 18px; /* Уменьшаем размер шрифта */
+    margin-bottom: 10px; /* Уменьшаем отступ */
+  }
+
+  li {
+    margin-bottom: 2px; /* Уменьшаем отступ */
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 3px; /* Уменьшаем отступ */
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+}
