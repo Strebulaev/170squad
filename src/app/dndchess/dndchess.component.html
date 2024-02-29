@@ -14,6 +14,16 @@
   </div>
 </div>
 
+<!-- Всплывающее окно с здоровьем -->
+<div class="tooltip" *ngIf="isTooltipVisible">
+  <ng-container *ngIf="tooltipData">
+    <div class="tooltip-content">
+      <div class="tooltip-name">{{ tooltipData.name }}</div>
+      <div class="tooltip-health">Health: {{ tooltipData.health }}</div>
+    </div>
+  </ng-container>
+</div>
+
 
 <h1 class="title">
   <img src="/assets/images/DnD.jpg" alt="Картинка DnD">
