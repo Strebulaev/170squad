@@ -8,10 +8,6 @@ import { Component } from '@angular/core';
 export class DndchessComponent {
   chessBoard: ChessCell[] = [];
   selectedCell: ChessCell | null = null;
-  isTooltipVisible: boolean = false;
-  tooltipData: ChessPiece | null = null;
-  tooltipTop: number | null = null;
-  tooltipLeft: number | null = null;
 
   constructor() {
     this.initializeChessBoard();
@@ -34,8 +30,7 @@ export class DndchessComponent {
       const col = i % 8;
       const color = (row + col) % 2 === 0 ? 'black' : '#FF7F00';
 
-      this.chessBoard.push({ piece: startingPosition[i], position: i, color: color, health: undefined, name: "", symbol: "" });
-    }
+      this.chessBoard.push({ piece: startingPosition[i], position: i, color: color, name: "", symbol: "" });    }
   }
 
   getPawnMoves(cell: ChessCell, isWhite: boolean): number[] {
@@ -212,7 +207,8 @@ export class DndchessComponent {
       const moveCol = potentialMoves[i + 1];
       if (moveRow >= 0 && moveRow < 8 && moveCol >= 0 && moveCol < 8) {
         const move = moveRow * 8 + moveCol;
-        if (this.isPieceTransparent(this.chessBoard[move].piece) && this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
+        if (this.isPieceTransparent(this.chessBoard[move].piece) ||
+          this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
           moves.push(move);
         }
       }
@@ -221,34 +217,7 @@ export class DndchessComponent {
     return moves;
   }
 
-  getKingMoves(cell: ChessCell): number[] {
-    const moves: number[] = [];
-    const col = cell.position % 8;
-    const row = Math.floor(cell.position / 8);
-    const potentialMoves = [
-      row + 1, col,
-      row + 1, col + 1,
-      row, col + 1,
-      row - 1, col + 1,
-      row - 1, col,
-      row - 1, col - 1,
-      row, col - 1,
-      row + 1, col - 1
-    ];
 
-    for (let i = 0; i < potentialMoves.length; i += 2) {
-      const moveRow = potentialMoves[i];
-      const moveCol = potentialMoves[i + 1];
-      if (moveRow >= 0 && moveRow < 8 && moveCol >= 0 && moveCol < 8) {
-        const move = moveRow * 8 + moveCol;
-        if (this.isPieceTransparent(this.chessBoard[move].piece) && this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
-          moves.push(move);
-        }
-      }
-    }
-
-    return moves;
-  }
 
   isPieceTransparent(piece: string): boolean {
     return piece === '' || piece === ' ';
@@ -287,28 +256,24 @@ export class DndchessComponent {
     switch (sourcePiece) {
       case '♙':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow pawn to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.floor(targetCell.position / 8) - Math.floor(sourceCell.position / 8);
           if (colDiff === 1 && rowDiff === -1) {
             return true;
           }
         } else if (targetPiece === '' && this.getPawnMoves(sourceCell, true).includes(targetCell.position)) {
-          // Allow pawn to move forward
           return true;
         }
         break;
 
       case '♟':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow pawn to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.floor(targetCell.position / 8) - Math.floor(sourceCell.position / 8);
           if (colDiff === 1 && rowDiff === 1) {
             return true;
           }
         } else if (targetPiece === '' && this.getPawnMoves(sourceCell, false).includes(targetCell.position)) {
-          // Allow pawn to move forward
           return true;
         }
         break;
@@ -366,8 +331,8 @@ export class DndchessComponent {
           }
         }
         break;
-      case '♘':
       case '♞':
+      case '♘':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
           // Allow knight to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
@@ -418,40 +383,11 @@ export class DndchessComponent {
       }
     }
   }
-
-  showTooltip(event: MouseEvent, cell: ChessCell) {
-    if (cell.piece !== '') {
-      this.isTooltipVisible = true;
-      this.tooltipData = {
-        name: cell.name,
-        symbol: cell.symbol,
-        color: cell.color,
-        health: cell.health
-      };
-      this.tooltipTop = event.clientY;
-      this.tooltipLeft
-      this.tooltipLeft = event.clientX + 20;
-    }
-  }
-
-  hideTooltip() {
-    this.isTooltipVisible = false;
-    this.tooltipData = null;
-    this.tooltipTop = null;
-    this.tooltipLeft = null;
-  }
-
-  doubleClickPiece(cell: ChessCell) {
-    if (cell.piece !== '') {
-      alert(`Health: ${cell.health}`);
-    }
-  }
 }
 interface ChessPiece {
   name: string;
   symbol: string;
   color: string;
-  health?: number;
 }
 
 interface ChessCell {
@@ -460,5 +396,4 @@ interface ChessCell {
   piece: string;
   position: number;
   color: string;
-  health?: number | undefined;
 }
