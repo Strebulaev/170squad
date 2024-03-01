@@ -38,34 +38,42 @@ export class DndchessComponent {
     const col = cell.position % 8;
     const row = Math.floor(cell.position / 8);
     const direction = isWhite ? -1 : 1;
+    const targetRow = row + direction;
 
-    for (let i = 1; col + i < 8 && row + i < 8; i++) {
-      const move = (row + i) * 8 + (col + i);
-      if (this.isPieceTransparent(this.chessBoard[move].piece)) {
-        moves.push(move);
-      } else {
-        if (this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
-          moves.push(move);
+    if (targetRow >= 0 && targetRow < 8) {
+      const moveForward = targetRow * 8 + col;
+      if (this.isPieceTransparent(this.chessBoard[moveForward].piece)) {
+        moves.push(moveForward);
+        if (row === (isWhite ? 6 : 1)) {
+          const doubleMoveForward = (targetRow + direction) * 8 + col;
+          if (this.isPieceTransparent(this.chessBoard[doubleMoveForward].piece)) {
+            moves.push(doubleMoveForward);
+          }
         }
-        break;
       }
-    }
-    const potentialMoves = [
-      cell.position + 8 * direction
-    ];
 
-    if ((row === 6 && isWhite) || (row === 1 && !isWhite)) {
-      potentialMoves.push(cell.position + 16 * direction);
-    }
+      const targetColLeft = col - 1;
+      if (targetColLeft >= 0) {
+        const moveAttackLeft = targetRow * 8 + targetColLeft;
+        if (!this.isPieceTransparent(this.chessBoard[moveAttackLeft].piece) &&
+          this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[moveAttackLeft])) {
+          moves.push(moveAttackLeft);
+        }
+      }
 
-    for (const move of potentialMoves) {
-      if (move >= 0 && move < 64 && this.isPieceTransparent(this.chessBoard[move].piece)) {
-        moves.push(move);
+      const targetColRight = col + 1;
+      if (targetColRight < 8) {
+        const moveAttackRight = targetRow * 8 + targetColRight;
+        if (!this.isPieceTransparent(this.chessBoard[moveAttackRight].piece) &&
+          this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[moveAttackRight])) {
+          moves.push(moveAttackRight);
+        }
       }
     }
 
     return moves;
   }
+
 
   getRookMoves(cell: ChessCell): number[] {
     const moves: number[] = [];
