@@ -7,14 +7,17 @@
        (dragstart)="startDrag($event, cell)"
        (dragover)="dragOver($event)"
        (drop)="drop($event, cell)"
-       draggable="true">
-    <div class="chess-cell-inner" [ngClass]="getChessPieceClass(cell)">
-      <span>{{ cell.piece }}</span>
+       draggable="true"
+       (dblclick)="showTooltip(cell)">
+    <div class="chess-piece" [ngClass]="getChessPieceClass(cell)">
+      <div class="chess-cell-inner">
+        <span>{{ cell.piece }}</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Всплывающее окно с здоровьем -->
+<!-- Всплывающее окно с параметрами фигуры -->
 <div class="tooltip" *ngIf="isTooltipVisible">
   <ng-container *ngIf="tooltipData">
     <div class="tooltip-content">
@@ -23,7 +26,6 @@
     </div>
   </ng-container>
 </div>
-
 
 <h1 class="title">
   <img src="/assets/images/DnD.jpg" alt="Картинка DnD">

@@ -10,6 +10,9 @@ export class DndchessComponent {
   selectedCell: ChessCell | null = null;
   isTooltipVisible: boolean = false;
   tooltipData: ChessPiece | null = null;
+  tooltipTop: number | null = null;
+  tooltipLeft: number | null = null;
+
   constructor() {
     this.initializeChessBoard();
   }
@@ -31,7 +34,7 @@ export class DndchessComponent {
       const col = i % 8;
       const color = (row + col) % 2 === 0 ? 'black' : '#FF7F00';
 
-      this.chessBoard.push({ piece: startingPosition[i], position: i, color: color });
+      this.chessBoard.push({ piece: startingPosition[i], position: i, color: color, health: undefined, name: "", symbol: "" });
     }
   }
 
@@ -209,7 +212,7 @@ export class DndchessComponent {
       const moveCol = potentialMoves[i + 1];
       if (moveRow >= 0 && moveRow < 8 && moveCol >= 0 && moveCol < 8) {
         const move = moveRow * 8 + moveCol;
-        if (this.isPieceTransparent(this.chessBoard[move].piece) || this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
+        if (this.isPieceTransparent(this.chessBoard[move].piece) && this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
           moves.push(move);
         }
       }
@@ -238,7 +241,7 @@ export class DndchessComponent {
       const moveCol = potentialMoves[i + 1];
       if (moveRow >= 0 && moveRow < 8 && moveCol >= 0 && moveCol < 8) {
         const move = moveRow * 8 + moveCol;
-        if (this.isPieceTransparent(this.chessBoard[move].piece) || this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
+        if (this.isPieceTransparent(this.chessBoard[move].piece) && this.getCellPieceColor(cell) !== this.getCellPieceColor(this.chessBoard[move])) {
           moves.push(move);
         }
       }
@@ -262,11 +265,9 @@ export class DndchessComponent {
     }
   }
 
-
   getChessPieceClass(cell: ChessCell): string {
     return cell.piece.toLowerCase();
   }
-
 
   selectCell(cell: ChessCell) {
     if (cell.piece !== '') {
@@ -278,7 +279,6 @@ export class DndchessComponent {
       this.selectedCell = null;
     }
   }
-
   isValidMove(sourceCell: ChessCell, targetCell: ChessCell): boolean {
     const sourcePiece = sourceCell.piece;
     const targetPiece = targetCell.piece;
@@ -287,79 +287,78 @@ export class DndchessComponent {
     switch (sourcePiece) {
       case '♙':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру пешкой
+          // Allow pawn to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.floor(targetCell.position / 8) - Math.floor(sourceCell.position / 8);
           if (colDiff === 1 && rowDiff === -1) {
             return true;
           }
         } else if (targetPiece === '' && this.getPawnMoves(sourceCell, true).includes(targetCell.position)) {
-          // Позволяем ходить вперед
+          // Allow pawn to move forward
           return true;
         }
         break;
 
       case '♟':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру пешкой
+          // Allow pawn to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.floor(targetCell.position / 8) - Math.floor(sourceCell.position / 8);
           if (colDiff === 1 && rowDiff === 1) {
             return true;
           }
         } else if (targetPiece === '' && this.getPawnMoves(sourceCell, false).includes(targetCell.position)) {
-          // Позволяем ходить вперед
+          // Allow pawn to move forward
           return true;
         }
         break;
       case '♖':
       case '♜':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру ладьей
+          // Allow rook to capture a piece
           if (this.getRookMoves(sourceCell).includes(targetCell.position)) {
             return true;
           }
         } else if (targetPiece === '' && this.getRookMoves(sourceCell).includes(targetCell.position)) {
-          // Позволяем двигаться горизонтально или вертикально
+          // Allow rook to move horizontally or vertically
           return true;
         }
         break;
       case '♗':
       case '♝':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру слоном
+          // Allow bishop to capture a piece
           if (this.getBishopMoves(sourceCell).includes(targetCell.position)) {
             return true;
           }
         } else if (targetPiece === '' && this.getBishopMoves(sourceCell).includes(targetCell.position)) {
-          // Позволяем двигаться по диагонали
+          // Allow bishop to move diagonally
           return true;
         }
         break;
       case '♕':
       case '♛':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру ферзем
+          // Allow queen to capture a piece
           if (this.getRookMoves(sourceCell).includes(targetCell.position) || this.getBishopMoves(sourceCell).includes(targetCell.position)) {
             return true;
           }
-
         } else if (targetPiece === '' && (this.getRookMoves(sourceCell).includes(targetCell.position) || this.getBishopMoves(sourceCell).includes(targetCell.position))) {
-          // Позволяем двигаться горизонтально, вертикально или по диагонали
+          // Allow queen to move horizontally, vertically or diagonally
           return true;
         }
         break;
       case '♔':
       case '♚':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру королём
+          // Allow king to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if (colDiff <= 1 && rowDiff <= 1) {
             return true;
           }
         } else if (targetPiece === '' && (this.getRookMoves(sourceCell).includes(targetCell.position) || this.getBishopMoves(sourceCell).includes(targetCell.position))) {
-          // Позволяем двигаться горизонтально, вертикально или по диагонали
+          // Allow king to move horizontally, vertically or diagonally
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if (colDiff <= 1 && rowDiff <= 1) {
@@ -370,14 +369,14 @@ export class DndchessComponent {
       case '♘':
       case '♞':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Позволяем съесть фигуру конём
+          // Allow knight to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if ((colDiff === 2 && rowDiff === 1) || (colDiff === 1 && rowDiff === 2)) {
             return true;
           }
-        } else if (targetPiece === '' && ((this.getKnightMoves(sourceCell).includes(targetCell.position)))) {
-          // Позволяем ходить конём
+        } else if (targetPiece === '' && (this.getKnightMoves(sourceCell).includes(targetCell.position))) {
+          // Allow knight to move
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if ((colDiff === 2 && rowDiff === 1) || (colDiff === 1 && rowDiff === 2)) {
@@ -392,8 +391,6 @@ export class DndchessComponent {
     return false;
   }
 
-
-
   movePiece(sourceCell: ChessCell, targetCell: ChessCell) {
     if (this.isValidMove(sourceCell, targetCell)) {
       const movedPiece = sourceCell.piece;
@@ -401,7 +398,6 @@ export class DndchessComponent {
       targetCell.piece = movedPiece;
     }
   }
-
 
   startDrag(event: DragEvent, cell: ChessCell) {
     if (cell.piece !== '') {
@@ -424,38 +420,45 @@ export class DndchessComponent {
   }
 
   showTooltip(event: MouseEvent, cell: ChessCell) {
-    event.preventDefault();
-    if (cell.piece) {
-      const chessPiece = findChessPiece(cell.piece);
-      if (chessPiece) {
-        this.isTooltipVisible = true;
-        this.tooltipData = chessPiece;
-      }
+    if (cell.piece !== '') {
+      this.isTooltipVisible = true;
+      this.tooltipData = {
+        name: cell.name,
+        symbol: cell.symbol,
+        color: cell.color,
+        health: cell.health
+      };
+      this.tooltipTop = event.clientY;
+      this.tooltipLeft
+      this.tooltipLeft = event.clientX + 20;
     }
   }
 
+  hideTooltip() {
+    this.isTooltipVisible = false;
+    this.tooltipData = null;
+    this.tooltipTop = null;
+    this.tooltipLeft = null;
+  }
 
-
+  doubleClickPiece(cell: ChessCell) {
+    if (cell.piece !== '') {
+      alert(`Health: ${cell.health}`);
+    }
+  }
 }
-
 interface ChessPiece {
   name: string;
   symbol: string;
   color: string;
-  health: number;
+  health?: number;
 }
 
 interface ChessCell {
+  name: string;
+  symbol: string;
   piece: string;
   position: number;
   color: string;
-}
-function findChessPiece(symbol: string): ChessPiece | undefined {
-  const chessPieces: ChessPiece[] = [
-    { name: 'Pawn', symbol: '♙', color: 'white', health: 3 },
-    { name: 'Rook', symbol: '♖', color: 'white', health: 5 },
-    // Добавьте другие фигуры соответствующие вашим правилам и символам
-  ];
-
-  return chessPieces.find(piece => piece.symbol === symbol);
+  health?: number | undefined;
 }

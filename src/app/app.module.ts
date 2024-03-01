@@ -21,6 +21,7 @@ import { DonatComponent } from './donat/donat.component';
 import { FanartsComponent } from './fanarts/fanarts.component';
 import { DubStepComponent } from './dub-step/dub-step.component';
 import { CountdownComponent } from './countdown/countdown.component';
+import { MatDialog } from '@angular/material/dialog';
 import { IisComponent } from './iis/iis.component';
 //social network
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -72,7 +73,7 @@ import { TelegramComponent } from './chat/telegram.component';
       { path: 'fanarts', component: FanartsComponent },
       { path: 'iis', component: IisComponent },
       { path: 'countdown', component: CountdownComponent },
-      { path: 'chat', component: TelegramComponent },
+      { path: 'chat', component: TelegramComponent }
       //social network
     ]),
   ],
