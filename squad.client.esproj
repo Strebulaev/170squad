@@ -7,4 +7,7 @@
     <!-- Folder where production build objects will be placed -->
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist\squad.client\</PublishAssetsDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="src\assets\images\DnD.png" />
+  </ItemGroup>
 </Project>
