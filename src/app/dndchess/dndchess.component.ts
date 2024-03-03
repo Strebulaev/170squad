@@ -1,13 +1,83 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+declare var particlesJS: any;
 
 @Component({
   selector: 'app-dndchess',
   templateUrl: './dndchess.component.html',
   styleUrls: ['./dndchess.component.css']
 })
-export class DndchessComponent {
+export class DndchessComponent implements OnInit {
   chessBoard: ChessCell[] = [];
   selectedCell: ChessCell | null = null;
+
+  ngOnInit(): void {
+    particlesJS.load('particles', 'assets/js/particles.js', function () {
+      particlesJS('particles', {
+        "particles": {
+          "number": {
+            "value": 1,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#ffdb0f"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            },
+            "polygon": {
+              "nb_sides": 5
+            },
+          },
+          "opacity": {
+            "value": 1,
+            "random": false,
+            "anim": {
+              "enable": true,
+              "speed": 2,
+              "opacity_min": 0.2,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 150,  // Увеличьте значение размера свечения
+            "random": false,
+            "anim": {
+              "enable": false,
+              "speed": 4,
+              "size_min": 10,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": false
+          },
+          "move": {
+            "enable": false
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": false
+            },
+            "onclick": {
+              "enable": false
+            },
+            "resize": true
+          }
+        },
+        "retina_detect": true
+      });
+    });
+  }
 
   constructor() {
     this.initializeChessBoard();
