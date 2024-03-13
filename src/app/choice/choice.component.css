@@ -59,3 +59,60 @@
   font-size: 14px;
   margin-top: 5px;
 }
+/* Адаптация для телефона */
+@media (max-width: 767px) {
+  .candidates-container {
+    margin-top: 10px;
+  }
+
+  .candidate {
+    margin-right: 10px;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .percentage-container {
+    width: 10px;
+    height: 150px;
+  }
+
+  .vote-button {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .percentage {
+    font-size: 12px;
+  }
+}
+
+/* Адаптация для ноутбука */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .candidates-container {
+    margin-top: 15px;
+  }
+
+  .candidate {
+    margin-right: 20px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .percentage-container {
+    width: 25px;
+    height: 250px;
+  }
+
+  .vote-button {
+    font-size: 20px;
+    padding: 12px;
+  }
+
+  .percentage {
+    font-size: 16px;
+  }
+}
