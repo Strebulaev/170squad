@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 declare var particlesJS: any;
 
@@ -7,81 +7,27 @@ declare var particlesJS: any;
   templateUrl: './dndchess.component.html',
   styleUrls: ['./dndchess.component.css']
 })
-export class DndchessComponent implements OnInit {
+export class DndchessComponent {
   chessBoard: ChessCell[] = [];
   selectedCell: ChessCell | null = null;
-
-  ngOnInit(): void {
-    particlesJS.load('particles', 'assets/js/particles.js', function () {
-      particlesJS('particles', {
-        "particles": {
-          "number": {
-            "value": 1,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#ffdb0f"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            },
-            "polygon": {
-              "nb_sides": 5
-            },
-          },
-          "opacity": {
-            "value": 1,
-            "random": false,
-            "anim": {
-              "enable": true,
-              "speed": 2,
-              "opacity_min": 0.2,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 150,  // Увеличьте значение размера свечения
-            "random": false,
-            "anim": {
-              "enable": false,
-              "speed": 4,
-              "size_min": 10,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": false
-          },
-          "move": {
-            "enable": false
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": false
-            },
-            "onclick": {
-              "enable": false
-            },
-            "resize": true
-          }
-        },
-        "retina_detect": true
-      });
-    });
-  }
-
   constructor() {
     this.initializeChessBoard();
   }
+
+  pieceHealth: { [piece: string]: number } = {
+    '♜': 100,
+    '♞': 100,
+    '♝': 100,
+    '♛': 100,
+    '♚': 100,
+    '♟': 100,
+    '♖': 100,
+    '♘': 100,
+    '♗': 100,
+    '♕': 100,
+    '♔': 100,
+    '♙': 100,
+  };
 
   initializeChessBoard() {
     const startingPosition = [
@@ -100,7 +46,8 @@ export class DndchessComponent implements OnInit {
       const col = i % 8;
       const color = (row + col) % 2 === 0 ? 'black' : '#FF7F00';
 
-      this.chessBoard.push({ piece: startingPosition[i], position: i, color: color, name: "", symbol: "" });    }
+      this.chessBoard.push({ piece: startingPosition[i], position: i, color: color, name: "", symbol: "" });
+    }
   }
 
   getPawnMoves(cell: ChessCell, isWhite: boolean): number[] {
@@ -466,6 +413,7 @@ interface ChessPiece {
   name: string;
   symbol: string;
   color: string;
+  health: number;
 }
 
 interface ChessCell {
@@ -475,3 +423,5 @@ interface ChessCell {
   position: number;
   color: string;
 }
+
+

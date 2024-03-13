@@ -41,7 +41,7 @@
 .chandelier-left {
   position: absolute;
   top: 80%;
-  left: 300px; 
+  left: 300px;
   transform: translate(-50%, -50%) rotate(0deg);
   width: 200px;
   height: 200px;
@@ -50,7 +50,7 @@
 .chandelier-right {
   position: absolute;
   top: 80%;
-  right: 300px; 
+  right: 300px;
   transform: translate(50%, -50%) rotate(0deg);
   width: 200px;
   height: 200px;
@@ -66,7 +66,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.8;
-  filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 1));
 }
 
 .web-top-left {
@@ -86,11 +86,13 @@
   right: 10px;
   transform: rotate(180deg);
 }
+
 .web-bottom-right1 {
   bottom: 0px;
   right: 100px;
   transform: rotate(90deg);
 }
+
 .web-bottom-right2 {
   bottom: -130px;
   right: -60px;
@@ -174,13 +176,13 @@ title {
 }
 
 
-.pumpkin {  
+.pumpkin {
   position: fixed;
-  bottom: -5px; 
-  right: -5px; 
+  bottom: -5px;
+  right: -5px;
   width: 200px;
   height: 200px;
-  background-image: url('/assets/images/pumpkin.png'); 
+  background-image: url('/assets/images/pumpkin.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -194,11 +196,12 @@ title {
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  background-color: #FBEA2B;
+  background-color: #dc9701ff;
   opacity: 0.5;
   z-index: 999;
-  box-shadow: 0 0 300px 200px #FBEA2B;
+  box-shadow: 0 0 300px 200px #dc9701ff;
 }
+
 .pointRight {
   position: absolute;
   top: 66%;
@@ -207,10 +210,10 @@ title {
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  background-color: #FBEA2B;
+  background-color: #dc9701ff;
   opacity: 0.5;
   z-index: 999;
-  box-shadow: 0 0 300px 200px #FBEA2B;
+  box-shadow: 0 0 300px 200px #dc9701ff;
 }
 
 .pointPumpkin {
