@@ -26,6 +26,7 @@
     "@vercel/postgres": "^0.7.2",
     "@vercel/speed-insights": "^1.0.9",
     "bootstrap": "^5.3.2",
+    "esbuild": "^0.20.1",
     "jest-editor-support": "*",
     "particles.js": "^2.0.0",
     "pg": "^8.11.3",
