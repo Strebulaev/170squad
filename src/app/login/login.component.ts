@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { swearWords } from '../swearWords';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent {
     console.log('Entered password:', this.password);
 
     const trimmedPassword = this.password.trim();
-    if (trimmedPassword === 'заебали блять') {
+    const lowerCaseSwearWords = swearWords.map(word => word.toLowerCase());
+
+    if (lowerCaseSwearWords.some(word => trimmedPassword.toLowerCase().includes(word.toLowerCase()))) {
       console.log('Logged in successfully');
       this.isLoggedIn = true;
       this.isPopupVisible = false;

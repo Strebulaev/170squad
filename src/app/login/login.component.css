@@ -15,16 +15,9 @@
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-  .popup form {
-    background-color: #fafafa;
-    border-radius: 12px;
-    padding: 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
-    width: 90%;
-  }
 
-  .popup input[type="password"] {
+
+  .popup input {
     width: 100%;
     padding: 14px;
     margin-bottom: 20px;
