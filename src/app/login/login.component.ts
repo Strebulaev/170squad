@@ -14,7 +14,7 @@ export class LoginComponent {
     console.log('Entered password:', this.password);
 
     const trimmedPassword = this.password.trim();
-    if (trimmedPassword === '170') {
+    if (trimmedPassword === 'заебали блять') {
       console.log('Logged in successfully');
       this.isLoggedIn = true;
       this.isPopupVisible = false;
