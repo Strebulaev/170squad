@@ -58,6 +58,7 @@ import { TelegramComponent } from './chat/telegram.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'ilusha', component: IlushaComponent },
       { path: 'arsusha', component: ArsushaComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'vikusha', component: VikushaComponent },
       { path: 'maksimushka', component: MaksimushkaComponent },
       { path: 'sergey', component: SergeyComponent },
