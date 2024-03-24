@@ -16,7 +16,7 @@ export class LoginComponent {
   constructor() { }
 
   onSubmit(): void {
-    console.log('Entered password:', this.password);
+    console.log(this.password);
 
     const trimmedPassword = this.password.trim();
     const lowerCaseSwearWords = swearWords.map((word) => word.toLowerCase());
