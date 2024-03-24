@@ -14,21 +14,6 @@ export class DndchessComponent {
     this.initializeChessBoard();
   }
 
-  pieceHealth: { [piece: string]: number } = {
-    '♜': 100,
-    '♞': 100,
-    '♝': 100,
-    '♛': 100,
-    '♚': 100,
-    '♟': 100,
-    '♖': 100,
-    '♘': 100,
-    '♗': 100,
-    '♕': 100,
-    '♔': 100,
-    '♙': 100,
-  };
-
   initializeChessBoard() {
     const startingPosition = [
       '♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜',

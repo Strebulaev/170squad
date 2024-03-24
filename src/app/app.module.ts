@@ -25,7 +25,6 @@ import { IisComponent } from './iis/iis.component';
 //social network
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { TelegramComponent } from './chat/telegram.component';
-import { ChoiceComponent } from './choice/choice.component';
 
 
 
@@ -46,13 +45,10 @@ import { ChoiceComponent } from './choice/choice.component';
     IisComponent,
     DonatComponent,
     LoreComponent,
-    TelegramComponent,
-    ChoiceComponent,
-    //social network
+
 
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -74,8 +70,6 @@ import { ChoiceComponent } from './choice/choice.component';
       { path: 'iis', component: IisComponent },
       { path: 'countdown', component: CountdownComponent },
       { path: 'chat', component: TelegramComponent },
-      { path: 'choice', component: ChoiceComponent },
-      //social network
     ]),
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
