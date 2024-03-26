@@ -11,7 +11,7 @@ export class LoginComponent {
   isPopupVisible: boolean = true;
   password: string = '';
   isLoggedIn: boolean = false;
-  telegramGroupId: string = '-1001822383897';
+  telegramGroupId: string = '';
 
   constructor() { }
 

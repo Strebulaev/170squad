@@ -24,7 +24,7 @@ import { CountdownComponent } from './countdown/countdown.component';
 import { IisComponent } from './iis/iis.component';
 //social network
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { TelegramComponent } from './chat/telegram.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -50,6 +50,7 @@ import { TelegramComponent } from './chat/telegram.component';
   ],
   imports: [
     HttpClientModule,
+    CommonModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -70,7 +71,6 @@ import { TelegramComponent } from './chat/telegram.component';
       { path: 'fanarts', component: FanartsComponent },
       { path: 'iis', component: IisComponent },
       { path: 'countdown', component: CountdownComponent },
-      { path: 'chat', component: TelegramComponent },
     ]),
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }

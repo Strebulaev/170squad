@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 
 export class Tab {
   constructor(public id: number, public name: string) { }
