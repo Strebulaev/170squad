@@ -39,7 +39,7 @@
           .then((response: any) => {
             const clientIp = response.ip;
 
-            if (this.isProfane(comment.body) && clientIp !== '62.217.191.135' || clientIp !== '172.26.40.208  ') {
+            if (this.isProfane(comment.body) && clientIp !== '62.217.191.135' || this.isProfane(comment.body) && clientIp !== '172.26.40.208') {
               console.log('Недостаточно прав для отправки комментариев, уёбки конченые, все кроме максюши конечно.');
             } else {
               // Добавляем комментарий, если это не матерное слово или если отправитель имеет санкционированный IP-адрес
