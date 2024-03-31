@@ -12,7 +12,6 @@
   }
 }
 
-
 .lighting {
   position: fixed;
   top: 0;
@@ -24,8 +23,6 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-
 
 .chandelier {
   position: fixed;
@@ -55,8 +52,6 @@
   width: 200px;
   height: 200px;
 }
-
-
 
 .spider-web {
   position: fixed;
@@ -134,7 +129,6 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-
 .chess-cell-inner {
   width: 80px;
   height: 80px;
@@ -147,13 +141,14 @@
 }
 
 title {
-  margin-top: -700px;
+  text-align: center;
 }
 
 .title img {
-  margin-top: 0px;
+  margin-top: -20px;
   width: 200px;
   height: 80px;
+  text-align: center;
 }
 
 .colortext {
@@ -175,7 +170,6 @@ title {
   background-image: url('/assets/images/Wall.jpg');
 }
 
-
 .pumpkin {
   position: fixed;
   bottom: -5px;
@@ -186,7 +180,6 @@ title {
   background-repeat: no-repeat;
   background-size: contain;
 }
-
 
 .pointLeft {
   position: absolute;
@@ -228,4 +221,35 @@ title {
   opacity: 0.5;
   z-index: 999;
   box-shadow: 0 0 50px 50px #FBEA2B;
+}
+@media only screen and (max-width: 768px) {
+  /* Стили для устройств с шириной до 768px */
+  .container {
+    margin-right: 20px;
+  }
+
+  .chess-board {
+    margin-right: 20px;
+  }
+
+  .title img {
+    width: 150px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* Стили для устройств с шириной до 480px */
+  .container {
+    margin-right: 10px;
+  }
+
+  .chess-board {
+    margin-right: 10px;
+  }
+
+  .title img {
+    width: 100px;
+    height: 40px;
+  }
 }
