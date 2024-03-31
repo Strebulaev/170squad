@@ -32,7 +32,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 1;
-  filter: brightness(1.5) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+  filter: brightness(1,5) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
 }
 
 .chandelier-left {
@@ -223,33 +223,27 @@ title {
   box-shadow: 0 0 50px 50px #FBEA2B;
 }
 @media only screen and (max-width: 768px) {
-  /* Стили для устройств с шириной до 768px */
-  .container {
-    margin-right: 20px;
-  }
-
   .chess-board {
-    margin-right: 20px;
+    width: 400px;
+    height: 400px;
   }
 
-  .title img {
-    width: 150px;
-    height: 60px;
+  .chess-cell-inner {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  /* Стили для устройств с шириной до 480px */
-  .container {
-    margin-right: 10px;
-  }
-
   .chess-board {
-    margin-right: 10px;
+    width: 300px;
+    height: 300px;
   }
 
-  .title img {
-    width: 100px;
-    height: 40px;
+  .chess-cell-inner {
+    width: 37.5px;
+    height: 37.5px;
+    font-size: 18.75px;
   }
 }
