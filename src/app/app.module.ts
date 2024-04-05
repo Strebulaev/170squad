@@ -25,6 +25,7 @@ import { IisComponent } from './iis/iis.component';
 //social network
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { TetrisComponent } from './tetris/tetris.component';
 
 
 
@@ -45,12 +46,14 @@ import { CommonModule } from '@angular/common';
     IisComponent,
     DonatComponent,
     LoreComponent,
+    TetrisComponent,
 
 
   ],
   imports: [
     HttpClientModule,
     CommonModule,
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -71,6 +74,7 @@ import { CommonModule } from '@angular/common';
       { path: 'fanarts', component: FanartsComponent },
       { path: 'iis', component: IisComponent },
       { path: 'countdown', component: CountdownComponent },
+      { path: 'tetris', component: TetrisComponent },
     ]),
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
