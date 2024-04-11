@@ -4,7 +4,7 @@
   <button class="toggle-comments" (click)="toggleComments()">☬</button>
   <ul [ngClass]="{'comments': true, 'show': showComments}">
     <li *ngFor="let comment of comments; let i = index">
-      <strong>{{ comment.author }}</strong>: {{ comment.body }}
+      <strong>{{ comment.author }}</strong>: {{ comment.body }} <button (click)="deleteComment(i)">Удалить</button>
     </li>
   </ul>
 

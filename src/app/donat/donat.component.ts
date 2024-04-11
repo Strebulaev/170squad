@@ -74,8 +74,10 @@
 
 
     deleteComment(index: number): void {
-      this.comments.splice(index, 1);
+      const deletedComment = this.comments.splice(index, 1)[0];
       this.saveCommentsToLocalStorage();
+
+      this.deleteBotComment(deletedComment);
     }
 
     toggleComments(): void {
@@ -86,6 +88,20 @@
     private saveCommentsToLocalStorage(): void {
       localStorage.setItem('comments', JSON.stringify(this.comments));
     }
+    async deleteBotComment(comment: any) {
+      const botUsername = "password170_bot";
+
+      if (comment.author === botUsername && comment.body.includes(comment.body)) {
+        try {
+          await this.http.get<any>(`https://api.telegram.org/bot${this.telegramBotToken}/deleteMessage?chat_id=${this.telegramChatId}&message_id=${comment.message.message_id}`).toPromise();
+          console.log('Bot comment deleted from Telegram');
+        } catch (error) {
+          console.error('Error deleting bot comment from Telegram:', error);
+        }
+      }
+    }
+
+
 
     private async getTelegramMessages(): Promise<void> {
       try {
