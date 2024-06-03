@@ -17,21 +17,22 @@
     <span class="colortext">hub</span>
   </h1>
 
-  <div class="chess-board">
-    <div class="chess-cell"
-         *ngFor="let cell of chessBoard"
-         [class.selected]="cell === selectedCell"
-         [style.background-color]="cell.color"
-         (click)="selectCell(cell)"
-         (dragstart)="startDrag($event, cell)"
-         (dragover)="dragOver($event)"
-         (drop)="drop($event, cell)"
-         draggable="true">
-      <div class="chess-cell-inner" [ngClass]="getChessPieceClass(cell)">
-        <span>{{ cell.piece }}</span>
-      </div>
+  <div class="chess-cell"
+       *ngFor="let cell of chessBoard"
+       [class.selected]="cell === selectedCell"
+       [style.background-color]="cell.color"
+       (click)="selectCell(cell)"
+       (click)="cell.piece !== '' ? eatPiece(cell) : null"
+       (touchstart)="startDrag($event, cell)"
+       (touchmove)="dragOver($event)"
+       (touchend)="drop($event, cell)"
+       [class.draggable]="cell.piece !== ''"
+       [attr.draggable]="cell.piece !== '' ? 'true' : null">
+    <div class="chess-cell-inner" [ngClass]="getChessPieceClass(cell)">
+      <span>{{ cell.piece }}</span>
     </div>
   </div>
+
 
   <div class="pointRight"></div>
   <div class="pointLeft"></div>

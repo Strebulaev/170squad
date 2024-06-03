@@ -234,13 +234,12 @@ export class DndchessComponent {
   }
 
   getCellPieceColor(cell: ChessCell): string {
-    // Determine the color of the piece based on its symbol
     if ('♙♖♘♗♕♔'.includes(cell.piece)) {
-      return 'white'; // white piece
+      return 'white'; 
     } else if ('♟♜♞♝♛♚'.includes(cell.piece)) {
-      return 'black'; // black piece
+      return 'black'; 
     } else {
-      return ''; // no piece/color
+      return ''; 
     }
   }
 
@@ -290,50 +289,42 @@ export class DndchessComponent {
       case '♖':
       case '♜':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow rook to capture a piece
           if (this.getRookMoves(sourceCell).includes(targetCell.position)) {
             return true;
           }
         } else if (targetPiece === '' && this.getRookMoves(sourceCell).includes(targetCell.position)) {
-          // Allow rook to move horizontally or vertically
           return true;
         }
         break;
       case '♗':
       case '♝':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow bishop to capture a piece
           if (this.getBishopMoves(sourceCell).includes(targetCell.position)) {
             return true;
           }
         } else if (targetPiece === '' && this.getBishopMoves(sourceCell).includes(targetCell.position)) {
-          // Allow bishop to move diagonally
           return true;
         }
         break;
       case '♕':
       case '♛':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow queen to capture a piece
           if (this.getRookMoves(sourceCell).includes(targetCell.position) || this.getBishopMoves(sourceCell).includes(targetCell.position)) {
             return true;
           }
         } else if (targetPiece === '' && (this.getRookMoves(sourceCell).includes(targetCell.position) || this.getBishopMoves(sourceCell).includes(targetCell.position))) {
-          // Allow queen to move horizontally, vertically or diagonally
           return true;
         }
         break;
       case '♔':
       case '♚':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow king to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if (colDiff <= 1 && rowDiff <= 1) {
             return true;
           }
         } else if (targetPiece === '' && (this.getRookMoves(sourceCell).includes(targetCell.position) || this.getBishopMoves(sourceCell).includes(targetCell.position))) {
-          // Allow king to move horizontally, vertically or diagonally
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if (colDiff <= 1 && rowDiff <= 1) {
@@ -344,14 +335,12 @@ export class DndchessComponent {
       case '♞':
       case '♘':
         if (isCapture && targetPiece !== '' && this.getCellPieceColor(sourceCell) !== this.getCellPieceColor(targetCell)) {
-          // Allow knight to capture a piece
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if ((colDiff === 2 && rowDiff === 1) || (colDiff === 1 && rowDiff === 2)) {
             return true;
           }
         } else if (targetPiece === '' && (this.getKnightMoves(sourceCell).includes(targetCell.position))) {
-          // Allow knight to move
           const colDiff = Math.abs(sourceCell.position % 8 - targetCell.position % 8);
           const rowDiff = Math.abs(Math.floor(sourceCell.position / 8) - Math.floor(targetCell.position / 8));
           if ((colDiff === 2 && rowDiff === 1) || (colDiff === 1 && rowDiff === 2)) {
