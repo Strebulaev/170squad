@@ -222,6 +222,7 @@ title {
   z-index: 999;
   box-shadow: 0 0 50px 50px #FBEA2B;
 }
+
 @media only screen and (max-width: 768px) {
   .chess-board {
     width: 400px;

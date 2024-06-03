@@ -408,5 +408,3 @@ interface ChessCell {
   position: number;
   color: string;
 }
-
-

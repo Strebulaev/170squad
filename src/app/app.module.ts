@@ -22,7 +22,6 @@ import { FanartsComponent } from './fanarts/fanarts.component';
 import { DubStepComponent } from './dub-step/dub-step.component';
 import { CountdownComponent } from './countdown/countdown.component';
 import { IisComponent } from './iis/iis.component';
-//social network
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { TetrisComponent } from './tetris/tetris.component';

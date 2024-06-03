@@ -33,6 +33,7 @@
     "particles.js": "^2.0.0",
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
+    "react": "^18.2.0",
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "telebot": "^1.4.1",
