@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-declare var particlesJS: any;
-
 @Component({
   selector: 'app-dndchess',
   templateUrl: './dndchess.component.html',
