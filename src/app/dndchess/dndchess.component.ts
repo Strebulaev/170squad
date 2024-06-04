@@ -7,6 +7,7 @@ declare var particlesJS: any;
   templateUrl: './dndchess.component.html',
   styleUrls: ['./dndchess.component.css']
 })
+
 export class DndchessComponent {
   chessBoard: ChessCell[] = [];
   selectedCell: ChessCell | null = null;
