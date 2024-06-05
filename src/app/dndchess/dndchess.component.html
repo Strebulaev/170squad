@@ -22,7 +22,6 @@
        [class.selected]="cell === selectedCell"
        [style.background-color]="cell.color"
        (click)="selectCell(cell)"
-       (click)="cell.piece !== '' ? eatPiece(cell) : null"
        (touchstart)="startDrag($event, cell)"
        (touchmove)="dragOver($event)"
        (touchend)="drop($event, cell)"
