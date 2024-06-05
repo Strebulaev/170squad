@@ -11,7 +11,7 @@ export class DndchessComponent {
   selectedCell: ChessCell | null = null;
   constructor() {
     this.initializeChessBoard();
-  }
+  } 
 
   initializeChessBoard() {
     const startingPosition = [

@@ -11,16 +11,8 @@
     opacity: 0.2;
   }
 }
-body {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  overflow: hidden
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.body{
+    overflow: hidden;
 }
 .lighting {
   position: fixed;
