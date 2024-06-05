@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dndchess',
-  templateUrl: './dndchess.component.html',
-  styleUrl: './dndchess.component.css'
+  templateUrl: '../dndchess.component.html',
+  styleUrls: ['./dndchess.component.css']
 })
 
 export class DndchessComponent {
