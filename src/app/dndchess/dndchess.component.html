@@ -22,9 +22,6 @@
        [class.selected]="cell === selectedCell"
        [style.background-color]="cell.color"
        (click)="selectCell(cell)"
-       (touchstart)="startDrag($event, cell)"
-       (touchmove)="dragOver($event)"
-       (touchend)="drop($event, cell)"
        [class.draggable]="cell.piece !== ''"
        [attr.draggable]="cell.piece !== '' ? 'true' : null">
     <div class="chess-cell-inner" [ngClass]="getChessPieceClass(cell)">
