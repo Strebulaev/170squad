@@ -25,8 +25,8 @@ import { IisComponent } from './iis/iis.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { TetrisComponent } from './tetris/tetris.component';
-
-
+import { ChatComponent } from './chat/chat.component';
+import { ChatService } from './chat.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +46,7 @@ import { TetrisComponent } from './tetris/tetris.component';
     DonatComponent,
     LoreComponent,
     TetrisComponent,
+    ChatComponent
 
 
   ],
@@ -74,6 +75,7 @@ import { TetrisComponent } from './tetris/tetris.component';
       { path: 'iis', component: IisComponent },
       { path: 'countdown', component: CountdownComponent },
       { path: 'tetris', component: TetrisComponent },
+      { path: 'chat', component: ChatComponent },
     ]),
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }

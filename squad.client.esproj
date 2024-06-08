@@ -10,4 +10,10 @@
   <ItemGroup>
     <None Remove="src\assets\images\DnD.png" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\models\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\models\**" />
+  </ItemGroup>
 </Project>

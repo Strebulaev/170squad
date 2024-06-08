@@ -1,0 +1,29 @@
+<div class="telegram-container">
+  <div class="telegram-header">
+    <div class="telegram-header-avatar">
+      <img class="avatar" src="../../assets/images/170cube.jpg" alt="Avatar">
+    </div>
+    <div class="telegram-header-title">Сквадер</div>
+    <div class="telegram-header-options">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-ellipsis-v"></i>
+    </div>
+  </div>
+  <div class="telegram-messages" #messagesContainer>
+    <div *ngFor="let message of messages" class="telegram-message" [ngClass]="{'sent': message, 'received': !message}">
+      <div class="telegram-message-content">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+  <div class="telegram-input">
+    <div class="telegram-input-field">
+      <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Введите сообщение" />
+    </div>
+    <div class="telegram-input-actions">
+      <i class="fas fa-paperclip"></i>
+      <i class="fas fa-smile"></i>
+      <button class="telegram-input-send" (click)="sendMessage()">☄️</button>
+    </div>
+  </div>
+</div>
